@@ -1,12 +1,14 @@
+//Give the code that:
+//1. child thread loops 10 times, then;
+//2. main thread loops 100 times;
+//3. repeat step 1 & 2, 50 times.
+
 #include<iostream>
 #include<thread>
 #include<mutex>
 #include<condition_variable>
 
 using namespace std;
-
-//子线程循环 10 次，接着主线程循环 100 次，接着又回到子线程循环 10 次，
-//接着再回到主线程又循环 100 次，如此循环50次，试写出代码
 
 mutex m;
 condition_variable cond;
@@ -17,13 +19,13 @@ void fun(int num) {
     unique_lock<mutex> lk(m);//A unique lock is an object that manages
 			     //a mutex object with unique ownership
 			     //in both states: locked and unlocked.
-    while(flag!=num) //cannot use if(), to prevent from "Spurious wake up"
-      cond.wait(lk);//在调用wait时会执行lk.unlock()
+    while(flag!=num) //cannot use if(), to prevent from "Spurious wakeup"
+      cond.wait(lk);//lk.unlock() will be called when calling wait
     for(int j=0;j<num;j++)
       cout<<j<<" ";
     cout<<endl;
     flag=(num==10)?100:10;
-    cond.notify_one();//被阻塞的线程唤醒后lk.lock()恢复在调用wait前的状态
+    cond.notify_one();//lk.lock() will be called when a blocked thread is waken up.
   }
 }
 

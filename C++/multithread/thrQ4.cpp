@@ -1,10 +1,12 @@
+//Give code that:
+//start 3 threads, their ID are A, B, C, respectively.
+//each thread prints its ID (on screen) 10 times,
+//the output sequence must be ABC, like: ABCABC..., etc.
+
 #include<iostream>
 #include<thread>
 #include<mutex>
 #include<condition_variable>
-
-//编写一个程序，开启3个线程，这3个线程的ID分别为A、B、C，每个线程将自己的ID在屏幕上打印10遍，
-//要求输出结果必须按ABC的顺序显示；如：ABCABC….依次递推。
 
 using namespace std;
 
@@ -16,7 +18,7 @@ int counter=0;
 void fun(int id){
   for(int i=0;i<LOOP;i++){
     unique_lock<mutex> lk(m);
-    while(id!=counter)//一定要用循环判断，若是if多个阻塞线程唤醒后同时处于临界区
+    while(id!=counter)//must use while loop, to prevent from "Spurious wakeup"
       cv.wait(lk);
     cout<<(u_char)('A'+id)<<" ";
     counter=(counter+1)%3;
