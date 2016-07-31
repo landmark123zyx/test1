@@ -34,15 +34,15 @@ MYCODEMAN3 = my_thread.3
 #OPTIONS = -DHIDE_EXPORTS
 #OPTIONS = -fvisibility=hidden
 #OPTIONS = -fvisibility=default
-#INCLUDE = . /usr/local/include /usr/local/include/c++/5.2.0 
-INCLUDE = . /usr/local/include/c++/5.3.0 
+INCLUDE = . /usr/local/include
 CFLAGS = $(OPTIONS) -g -DSVR4 -DPTHREAD_SAFE --std=c++14 $(INCLUDE:%=-I%)
 LNKFLAGS = $(OPTIONS) -g -DSVR4 -DPTHREAD_SAFE
 
 LIBDIRS = /usr/local/lib
-LIBS = pthread
+#LIBS = pthread
+LIBS =
 
-CC=g++-5.3.0
+CC=g++
 
 OBJECTS1  = $(MYCODESOURCE1:.cpp=.o)
 OBJECTS2  = $(MYCODESOURCE2:.cpp=.o)
