@@ -1,0 +1,36 @@
+start of mainserver:
+====================
+$ ./mainserver_thrpool.exe 18888
+Main server started
+ tid: 0x80014d98, bef lock(queue_mutex), tasks.sz=0, stop=0
+ tid: 0x8004d158, bef lock(queue_mutex), tasks.sz=0, stop=0
+
+
+start of proxy:
+===============
+with three arguments: server IP address, server port, proxy's port
+$ ./proxyserver_thrpool.exe 127.0.0.1 18888 19999
+Main server IP : 127.0.0.1, and port: 18888
+Proxy server port: 19999
+Proxy server started
+ tid: 0x80014d98, bef lock(queue_mutex), tasks.sz=0, stop=0
+waiting for connection..
+ tid: 0x8004d158, bef lock(queue_mutex), tasks.sz=0, stop=0
+
+
+start of client 1:
+==================
+with two arguments: proxy's IP address, proxy's port
+$ ./client_thrpool.exe localhost 19999
+Type here:1111111
+Server response: 1111111
+Type here:
+
+
+start of client 2:
+==================
+with two arguments: proxy's IP address, proxy's port
+$ ./client_thrpool.exe localhost 19999
+Type here:2222222
+Server response: 2222222
+Type here:
