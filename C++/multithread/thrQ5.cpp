@@ -25,8 +25,14 @@ void fun(ofstream *ofPtr, int num)
   for(int i=0;i<LOOP;i++){
     unique_lock<mutex> lk(m);
 //cout << "cnt=" << cnt << ", num+1=" << num+1 << endl;
-    while(cnt!=num)
-      cv.wait(lk);
+
+//    while(cnt!=num)
+//      cv.wait(lk);
+    //or, use std::condition_variable 2nd wait(), don't need loop,
+    //use lambda as pred
+    cv.wait(lk, [&] { return cnt==num; });
+
+
     *ofPtr << numArr[num] <<" ";
     cnt=(cnt+1)%4;
     numArr[num] = (numArr[num]+1)%4;

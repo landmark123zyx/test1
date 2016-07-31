@@ -18,8 +18,13 @@ int counter=0;
 void fun(int id){
   for(int i=0;i<LOOP;i++){
     unique_lock<mutex> lk(m);
-    while(id!=counter)//must use while loop, to prevent from "Spurious wakeup"
-      cv.wait(lk);
+
+//    while(id!=counter)//must use while loop, to prevent from "Spurious wakeup"
+//      cv.wait(lk);
+    //or, use std::condition_variable 2nd wait(), don't need loop,
+    //use lambda as pred
+    cv.wait(lk, [&] { return id==counter; });
+
     cout<<(u_char)('A'+id)<<" ";
     counter=(counter+1)%3;
     cv.notify_all();

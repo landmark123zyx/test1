@@ -6,9 +6,9 @@ MYCODETARGET1 = thrQ3
 MYCODETARGET2 = thrQ4
 MYCODETARGET3 = thrQ5
 MYCODETARGET4 = thrQ6
-#MYCODETARGET5 = thr_7
-#MYCODETARGET6 = comma4int
-#MYCODETARGET7 = remove_dupl
+MYCODETARGET5 = thrQ7_0
+MYCODETARGET6 = thrQ7_1
+MYCODETARGET7 = thrQ7_2
 #MYCODETARGET8 = class_noinherited
 
 # list of project libraries that are being linked
@@ -18,9 +18,9 @@ MYCODESOURCE1 = thrQ3.cpp
 MYCODESOURCE2 = thrQ4.cpp
 MYCODESOURCE3 = thrQ5.cpp
 MYCODESOURCE4 = thrQ6.cpp
-#MYCODESOURCE5 = thr_7.cpp
-#MYCODESOURCE6 = comma4int.cpp
-#MYCODESOURCE7 = remove_dupl.cpp
+MYCODESOURCE5 = thrQ7_0.cpp
+MYCODESOURCE6 = thrQ7_1.cpp
+MYCODESOURCE7 = thrQ7_2.cpp
 #MYCODESOURCE8 = class_noinherited.cpp
 
 # list of other files (data files, man pages, etc...)

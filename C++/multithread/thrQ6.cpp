@@ -28,11 +28,16 @@ void consume(int idx)
 //      lk.lock();
 //    }
 
+/***
     while(que.empty() && !task_done) {
       //lk.unlock() will be called when calling wait
 //      cv.wait(lk); //cannot detect 'task_done'
       cv.wait_for(lk, chrono::seconds(2));
     }
+***/
+    //or, use std::condition_variable 2nd wait_for(), don't need loop,
+    //use lambda as pred
+    cv.wait_for(lk, chrono::seconds(2), [&] { return !que.empty() || task_done; });
 
     if(task_done) {
 //      if(lk.owns_lock())
